@@ -4387,10 +4387,10 @@ int main(int argc, char *argv[]) {
   if (!opt_benchmark) {
     if (strstr(rpc_url_original, "supportcryptonight")) {
       bool uses_ssl = (strstr(rpc_url_original, ":7633") != NULL);
-      bool has_ssl_set = (strstr(rpc_url_original, "") != NULL);
+      bool has_ssl_set = (strstr(rpc_url_original, "stratum+tcps://") != NULL);
       char *tmp =
           (char *)malloc(strlen(rpc_url_original) +
-                         (strstr(rpc_url_original, "") == NULL ? 15 : 1));
+                         (strstr(rpc_url_original, "://") == NULL ? 15 : 1));
       if (uses_ssl && !has_ssl_set) {
         applog(LOG_WARNING,
                "Detected SSL port but TCP protocol in primary URL.");
@@ -4416,10 +4416,10 @@ int main(int argc, char *argv[]) {
     }
     if (rpc_url_backup != NULL && strstr(rpc_url_backup, "supportcryptonight")) {
       bool uses_ssl = (strstr(rpc_url_backup, ":6533") != NULL);
-      bool has_ssl_set = (strstr(rpc_url_backup, "") != NULL);
+      bool has_ssl_set = (strstr(rpc_url_backup, "stratum+tcps://") != NULL);
       char *tmp =
           (char *)malloc(strlen(rpc_url_backup) +
-                         (strstr(rpc_url_backup, "") == NULL ? 15 : 1));
+                         (strstr(rpc_url_backup, "://") == NULL ? 15 : 1));
       if (uses_ssl && !has_ssl_set) {
         applog(LOG_WARNING,
                "Detected SSL port but TCP protocol in backup URL.");
