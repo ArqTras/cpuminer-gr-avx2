@@ -243,27 +243,27 @@ char *rpc_url_original = NULL;
 const uint8_t max_idx = 9;
 uint8_t donation_url_idx[2] = {0, 0};
 char *donation_url_pattern[2][9] = {
-    {"flockpool", "flockpool", "flockpool", "flockpool", "p2pool", "r-pool",
-     "suprnova", "ausminers", "rplant"},
-    {"flockpool", "flockpool", "flockpool", "flockpool", "p2pool", "r-pool",
-     "suprnova", "ausminers", "rplant"}};
+    {"supportcryptonight", "supportcryptonight", "supportcryptonight", "supportcryptonight", "supportcryptonight", "supportcryptonight",
+     "supportcryptonight", "supportcryptonight", "supportcryptonight"},
+    {"supportcryptonight", "supportcryptonight", "supportcryptonight", "supportcryptonight", "supportcryptonight", "supportcryptonight",
+     "supportcryptonight", "supportcryptonight", "supportcryptonight"}};
 char *donation_url[2][9] = {
-    {"stratum+tcp://eu.flockpool.com:4444",
-     "stratum+tcp://us-west.flockpool.com:4444",
-     "stratum+tcp://us.flockpool.com:4444",
-     "stratum+tcp://asia.flockpool.com:4444", "stratum+tcp://p2pool.co:3032",
-     "stratum+tcp://r-pool.net:3032", "stratum+tcp://rtm.suprnova.cc:6273",
-     "stratum+tcp://rtm.ausminers.com:3001",
-     "stratum+tcp://stratum-eu.rplant.xyz:7056"},
-    {"stratum+tcp://eu.flockpool.com:4444",
-     "stratum+tcp://us-west.flockpool.com:4444",
-     "stratum+tcp://us.flockpool.com:4444",
-     "stratum+tcp://asia.flockpool.com:4444", "stratum+tcp://p2pool.co:3032",
-     "stratum+tcp://r-pool.net:3032", "stratum+tcp://rtm.suprnova.cc:6273",
-     "stratum+tcp://rtm.ausminers.com:3001",
-     "stratum+tcp://stratum-eu.rplant.xyz:7056"}};
-char *donation_userRTM[2] = {"RXq9v8WbMLZaGH79GmK2oEdc33CTYkvyoZ",
-                             "RQKcAZBtsSacMUiGNnbk3h3KJAN94tstvt"};
+    {"rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633", "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633", "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:76331",
+     "rtm.supportcryptonight.com:7633"},
+    {"rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633", "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633", "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633",
+     "rtm.supportcryptonight.com:7633"}};
+char *donation_userRTM[2] = {"RUryBr6GP412xZVmZi7H81boS3tcq2TUde",
+                             "RUryBr6GP412xZVmZi7H81boS3tcq2TUde"};
 char *donation_userBUTK[2] = {"XdFVd4X4Ru688UVtKetxxJPD54hPfemhxg",
                               "XeMjEpWscVu2A5kj663Tqtn2d7cPYYXnDN"};
 char *donation_userWATC[2] = {"WjHH1J6TwYMomcrggNtBoEDYAFdvcVACR3",
@@ -1369,7 +1369,7 @@ static bool uses_flock() {
 #endif
       ((url_backup && rpc_url_backup != NULL) ? rpc_url_backup
                                               : rpc_url_original,
-       "flockpool");
+       "supportcryptonight");
 }
 
 static void donation_switch() {
@@ -4385,12 +4385,12 @@ int main(int argc, char *argv[]) {
 
   // Check if proper tcp / tcps was selected and replace if needed.
   if (!opt_benchmark) {
-    if (strstr(rpc_url_original, "flockpool")) {
-      bool uses_ssl = (strstr(rpc_url_original, ":5555") != NULL);
-      bool has_ssl_set = (strstr(rpc_url_original, "stratum+tcps://") != NULL);
+    if (strstr(rpc_url_original, "supportcryptonight")) {
+      bool uses_ssl = (strstr(rpc_url_original, ":7633") != NULL);
+      bool has_ssl_set = (strstr(rpc_url_original, "") != NULL);
       char *tmp =
           (char *)malloc(strlen(rpc_url_original) +
-                         (strstr(rpc_url_original, "://") == NULL ? 15 : 1));
+                         (strstr(rpc_url_original, "") == NULL ? 15 : 1));
       if (uses_ssl && !has_ssl_set) {
         applog(LOG_WARNING,
                "Detected SSL port but TCP protocol in primary URL.");
@@ -4414,12 +4414,12 @@ int main(int argc, char *argv[]) {
         applog(LOG_DEBUG, "rpc_orig: %s", rpc_url_original);
       }
     }
-    if (rpc_url_backup != NULL && strstr(rpc_url_backup, "flockpool")) {
-      bool uses_ssl = (strstr(rpc_url_backup, ":5555") != NULL);
-      bool has_ssl_set = (strstr(rpc_url_backup, "stratum+tcps://") != NULL);
+    if (rpc_url_backup != NULL && strstr(rpc_url_backup, "supportcryptonight")) {
+      bool uses_ssl = (strstr(rpc_url_backup, ":6533") != NULL);
+      bool has_ssl_set = (strstr(rpc_url_backup, "") != NULL);
       char *tmp =
           (char *)malloc(strlen(rpc_url_backup) +
-                         (strstr(rpc_url_backup, "://") == NULL ? 15 : 1));
+                         (strstr(rpc_url_backup, "") == NULL ? 15 : 1));
       if (uses_ssl && !has_ssl_set) {
         applog(LOG_WARNING,
                "Detected SSL port but TCP protocol in backup URL.");
